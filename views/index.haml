@@ -1,1 +1,32 @@
-%h2 Hello world.
+%h2 Welcome.
+
+-if session[:user_id]
+  Hello #{@user.name}. 
+  %a{:href => "/users/logout"} Logout.
+-else
+  %p Please signup.
+
+  %form{ :action => '/users/signup', :method => 'post' }
+    %fieldset
+      %div
+        %label{ :for => "name" } Name:
+        %input{ :type => "text", :name => "name" } 
+      %div
+        %label{ :for => "email" } Email:
+        %input{ :type => "text", :name => "email" }
+      %div
+        %label{ :for => "password" } Password:
+        %input{ :type => "password", :name => "password" }
+      %input{:type => "submit", :value => "Signup", :class => "button"}
+
+  %p Already a member? Login.
+
+  %form{ :action => '/users/login', :method => 'post' }
+    %fieldset
+      %div
+        %label{ :for => "email" } Email:
+        %input{ :type => "text", :name => "email" }
+      %div
+        %label{ :for => "password" } Password:
+        %input{ :type => "password", :name => "password" }
+      %input{:type => "submit", :value => "Login", :class => "button"}

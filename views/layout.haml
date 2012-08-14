@@ -1,0 +1,8 @@
+%html
+  %head
+    %title #{@title}
+  %body
+    -if flash[:message]
+      %div.flash #{flash[:message]}
+    
+    =yield

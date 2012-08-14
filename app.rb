@@ -1,15 +1,86 @@
 require 'rubygems'
 require 'sinatra'
 require 'mongo'
+require 'mongo_mapper'
 require 'json'
+require 'haml'
+require 'rack-flash'
+require 'sinatra/logger'
+require "sinatra/reloader"
 
-DB = Mongo::Connection.new.db("thepostbin", :pool_size => 5,  
-  :timeout => 5)  
+class ThePostBin < Sinatra::Base
+  configure do
+    MongoMapper.database = 'thepostbin'
+  end
 
-get '/' do
-  haml :index
-end
+  configure :development do
+    register Sinatra::Reloader
+  end
 
-get '/posts' do
-  haml :'posts/index'
+  class User
+    include MongoMapper::Document
+
+    key :name, String
+    key :email, Integer
+    key :password, String
+
+    many :posts
+  end
+
+  class Post
+    include MongoMapper::EmbeddedDocument
+
+    key :text, String
+    key :completed, Boolean
+  end
+
+  enable  :sessions, :logging
+  use Rack::Flash
+
+  get '/' do
+
+    @title = "ThePostBin - Home"
+
+    if user_id = session[:user_id]
+      @user = User.find(user_id)
+    end
+    haml :index
+  end
+
+  get '/posts' do
+    haml :'posts/index'
+  end
+
+  # USERS
+
+  post '/users/signup' do
+    user = User.create(:name => params[:name], :email => params[:email], :password => params[:password])
+    session[:user_id] = user.id
+    redirect '/'
+  end
+
+  post '/users/login' do 
+    auth = false
+
+    if user = User.find_by_email(params[:email])
+      logger.info("HERE: #{user.inspect}")
+      if user.password = params[:password]
+        auth = true
+      end
+    end
+    
+    if auth
+      session[:user_id] = user.id
+    else
+      flash[:message] = "Your attempt to authenticate was a failure."
+    end
+
+    redirect '/'
+  end
+
+  get '/users/logout' do
+    flash[:message] = "You have been logged out. Cya."
+    session[:user_id] = nil
+    redirect '/'
+  end
 end
