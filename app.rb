@@ -8,6 +8,23 @@ require 'rack-flash'
 require 'sinatra/logger'
 require "sinatra/reloader"
 
+class User
+  include MongoMapper::Document
+
+  key :name, String, :required => true
+  key :email, String, :required => true
+  key :password, String, :required => true
+
+  many :posts
+end
+
+class Post
+  include MongoMapper::EmbeddedDocument
+
+  key :text, String, :required => true
+  key :completed, Boolean
+end
+
 class ThePostBin < Sinatra::Base
   configure do
     MongoMapper.database = 'thepostbin'
@@ -15,23 +32,6 @@ class ThePostBin < Sinatra::Base
 
   configure :development do
     register Sinatra::Reloader
-  end
-
-  class User
-    include MongoMapper::Document
-
-    key :name, String
-    key :email, Integer
-    key :password, String
-
-    many :posts
-  end
-
-  class Post
-    include MongoMapper::EmbeddedDocument
-
-    key :text, String
-    key :completed, Boolean
   end
 
   enable  :sessions, :logging
@@ -63,7 +63,6 @@ class ThePostBin < Sinatra::Base
     auth = false
 
     if user = User.find_by_email(params[:email])
-      logger.info("HERE: #{user.inspect}")
       if user.password = params[:password]
         auth = true
       end
@@ -71,6 +70,7 @@ class ThePostBin < Sinatra::Base
     
     if auth
       session[:user_id] = user.id
+      flash[:message] = "Logged in!"
     else
       flash[:message] = "Your attempt to authenticate was a failure."
     end
