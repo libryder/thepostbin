@@ -1,6 +1,7 @@
 ```
+setup mongodb
 bundle install
-rake db:migrate
+ruby app.rb
 ????
 profit
 ```
