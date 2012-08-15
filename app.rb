@@ -26,11 +26,19 @@ class Post
 end
 
 class ThePostBin < Sinatra::Base
-  configure do
-    MongoMapper.database = 'thepostbin'
+  configure :production do
+    db = URI.parse(ENV['MONGOHQ_URL'])
+    db_name = db.path.gsub(/^\//, '')
+    MongoMapper.connection = Mongo::Connection.new(db.host, db.port)
+    MongoMapper.database = 'db_name'
   end
 
+  # configure do
+  #   MongoMapper.database = 'thepostbin'
+  # end
+
   configure :development do
+    MongoMapper.database = 'thepostbin'
     register Sinatra::Reloader
   end
 
