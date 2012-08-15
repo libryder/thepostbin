@@ -8,11 +8,11 @@ ThePostBin is a simple HTML5 web app running on the following technologies:
 
 ##Setup##
 
-[Setup mongodb.](http://www.mongodb.org/display/DOCS/Quickstart/) and start mongod.
+[Setup mongodb](http://www.mongodb.org/display/DOCS/Quickstart/) and start mongod.
 
 
 ```
-git://github.com/libryder/thepostbin.git
+git clone git://github.com/libryder/thepostbin.git
 rvm use 1.9.3@thepostbin --create
 bundle install
 rackup
