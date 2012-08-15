@@ -7,6 +7,7 @@ require 'haml'
 require 'rack-flash'
 require 'sinatra/logger'
 require "sinatra/reloader"
+require "uri"
 
 class User
   include MongoMapper::Document
