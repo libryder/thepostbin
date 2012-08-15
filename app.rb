@@ -31,7 +31,7 @@ class ThePostBin < Sinatra::Base
     db = URI.parse(ENV['MONGOHQ_URL'])
     db_name = db.path.gsub(/^\//, '')
     MongoMapper.connection = Mongo::Connection.new(db.host, db.port)
-    MongoMapper.database = 'db_name'
+    MongoMapper.database = db_name
   end
 
   # configure do
