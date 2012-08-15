@@ -7,6 +7,7 @@ require 'haml'
 require 'rack-flash'
 require 'sinatra/logger'
 require "sinatra/reloader"
+require "uri"
 
 class User
   include MongoMapper::Document
@@ -30,7 +31,8 @@ class ThePostBin < Sinatra::Base
     db = URI.parse(ENV['MONGOHQ_URL'])
     db_name = db.path.gsub(/^\//, '')
     MongoMapper.connection = Mongo::Connection.new(db.host, db.port)
-    MongoMapper.database = 'db_name'
+    MongoMapper.connection.db(db_name).authenticate(db.user, db.password)
+    MongoMapper.database = db_name
   end
 
   # configure do
