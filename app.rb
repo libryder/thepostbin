@@ -36,6 +36,7 @@ class ThePostBin < Sinatra::Base
 
   enable  :sessions, :logging
   use Rack::Flash
+  set :haml, :format => :html5
 
   get '/' do
 
