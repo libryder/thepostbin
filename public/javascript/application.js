@@ -3,4 +3,7 @@ $(document).ready(function() {
     e.preventDefault();
     $(this).tab('show');
   })
+  $(".collapse").collapse({
+    toggle: false
+  })
 })

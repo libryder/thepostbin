@@ -1,8 +1,14 @@
 body { padding: 15px; }
-#tab-container { width: 500px; border: 1px solid #ccc; padding: 15px; border-radius: 5px;}
+
+#tab-container { 
+  width: 500px; 
+  border-radius: 5px;
+  margin: 0 auto;
+}
 
 .post_form {
-  width: 302px;
+  width: 389px;
+  margin: 0 auto;
 }
 .post_form ul {
   margin-top: 15px;
@@ -13,14 +19,35 @@ body { padding: 15px; }
   border: 1px solid #CCC;
   padding: 5px;
   border-radius: 5px;
+  background: #FFCF40;
 }
 
 .post_form li span {
   float: right;
 }
 
+input {
+  height: 27px;
+}
+
+.post_form input#post_content {
+  margin-top: 10px;
+}
+.post_form form {
+  border: 1px solid #FFCF40;
+}
 .delete_post {
   cursor: pointer;
+}
+
+#header {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #399BE6;
+
 }
 
 #footer {
@@ -28,4 +55,16 @@ body { padding: 15px; }
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background: #FF7640;
+}
+
+.accordion-group {
+  width: 600px;
+  margin: 0 auto;
+}
+.accordion-toggle {
+  background: #CCC;
+}
+.accordion-main {
+  margin-top: 8px;
 }
