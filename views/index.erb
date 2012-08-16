@@ -1,0 +1,74 @@
+<h2>Welcome.</h2>
+<div ng-controller="PostsController" class='container' id='container'>
+  <div class='post_form'>
+    <form>
+      <fieldset>
+        <div>
+          <input ng-model="newPost" id='post_content' name='post_content' type='text'>
+          <input ng-click="addPost(newPost)" class='btn' id='post_submit' type='submit' value='New Post'>
+          
+          <ul>
+            <li ng-repeat="post in posts">
+              {{post.text}}
+              <span class="delete_post" ng-click="deletePost(post)"><img src="/images/delete_post.png" alt="x" />
+            </li>
+          </ul>
+
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div id='tab-container'>
+  <% if session[:user_id] %>
+    Hello <%= @user.name %>
+  <% else %>
+    <ul class='nav nav-tabs' id='nav_tabs'>
+      <li class='active'>
+        <a href='#login'>Login</a>
+      </li>
+      <li>
+        <a href='#signup'>Signup</a>
+      </li>
+    </ul>
+
+    <div class='tab-content'>
+      <div class='tab-pane active' id='login'>
+        <form action='/users/login' method='post'>
+          <fieldset>
+            <div>
+              <label for='email'>Email:</label>
+              <input name='email' type='text'>
+            </div>
+            <div>
+              <label for='password'>Password:</label>
+              <input name='password' type='password'>
+            </div>
+            <input class='button btn' type='submit' value='Login'>
+          </fieldset>
+        </form>
+      </div>
+      <div class='tab-pane' id='signup'>
+        <form action='/users/signup' method='post'>
+          <fieldset>
+            <div>
+              <label for='name'>Name:</label>
+              <input name='name' type='text'>
+            </div>
+            <div>
+              <label for='email'>Email:</label>
+              <input name='email' type='text'>
+            </div>
+            <div>
+              <label for='password'>Password:</label>
+              <input name='password' type='password'>
+            </div>
+            <input class='button btn' type='submit' value='Signup'>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+  <% end %>
+  
+</div>

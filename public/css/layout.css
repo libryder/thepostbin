@@ -1,2 +1,24 @@
 body { padding: 15px; }
 #tab-container { width: 500px; border: 1px solid #ccc; padding: 15px; border-radius: 5px;}
+
+.post_form {
+  width: 302px;
+}
+.post_form ul {
+  margin-top: 15px;
+}
+.post_form li {
+  list-style: none;
+  margin: 4px;
+  border: 1px solid #CCC;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.post_form li span {
+  float: right;
+}
+
+.delete_post {
+  cursor: pointer;
+}

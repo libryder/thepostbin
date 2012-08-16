@@ -55,7 +55,7 @@ class ThePostBin < Sinatra::Base
     if user_id = session[:user_id]
       @user = User.find(user_id)
     end
-    haml :index
+    erb :index
   end
 
   get '/posts' do

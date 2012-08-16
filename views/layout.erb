@@ -1,0 +1,21 @@
+<html ng-app>
+  <head>
+    <title><%= @title %></title>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js' type='text/javascript'></script>
+    <script src='http://code.angularjs.org/angular-1.0.1.min.js' type='text/javascript'></script>
+    <script src='/javascript/bootstrap-tab.js' type='text/javascript'></script>
+    <script src='/javascript/application.js' type='text/javascript'></script>
+    <script src='/javascript/postCtrl.js' type='text/javascript'></script>
+    <link href='/css/normalize.css' rel='stylesheet'>
+    <link href='/css/layout.css' rel='stylesheet'>
+    <link href='/css/bootstrap.css' rel='stylesheet'>
+  </head>
+  <body>
+
+    <% if flash[:message] %>
+        <div class="flash"><%= flash[:message] %>
+    <% end %>
+
+    <%= yield %>
+ </body>
+</html>
