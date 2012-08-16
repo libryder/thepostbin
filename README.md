@@ -3,7 +3,7 @@ ThePostBin is a simple HTML5 web app running on the following technologies:
 
 * Server running on sinatra  
 * Persistence powered by MongoDB under MongoMapper
-* UI styled with Twitter Boostrap and driven with jQuery and backbone.js
+* UI styled with Twitter Boostrap and driven with jQuery and [Angular.js](http://angularjs.org)
 
 
 ##Setup##
