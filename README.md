@@ -28,4 +28,4 @@ I want to bring that app back but using technologies I've never used. This is th
 
 ##Live Demo##
 
-[http://thepostbin.herokuapp.com](Check it out.)
+[Check it out.](http://thepostbin.herokuapp.com)
