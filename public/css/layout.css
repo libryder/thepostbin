@@ -22,3 +22,10 @@ body { padding: 15px; }
 .delete_post {
   cursor: pointer;
 }
+
+#footer {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

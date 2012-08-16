@@ -3,9 +3,9 @@ function PostsController($scope) {
   $scope.newPost = "";
 
   $scope.posts = [
-    {"text": "Nexus S"},
-    {"text": "Motorola XOOM™ with Wi-Fi"},
-    {"text": "MOTOROLA XOOM™"}
+    {"text": "Get milk"},
+    {"text": "Do Yoga"},
+    {"text": "Eat delicious sushi"}
   ];
 
   $scope.addPost = function() {

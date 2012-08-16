@@ -3,7 +3,6 @@ require 'sinatra'
 require 'mongo'
 require 'mongo_mapper'
 require 'json'
-require 'haml'
 require 'rack-flash'
 require 'sinatra/logger'
 require "sinatra/reloader"
